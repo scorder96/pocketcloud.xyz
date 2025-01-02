@@ -74,7 +74,7 @@ export default function HooksUploadDialog({ instanceid }: Props) {
       Files.forEach((file) => {
         formData.append("files", file);
       });
-      await fetch(import.meta.env.VITE_API_URL + params.id, {
+      await fetch(import.meta.env.VITE_API_URL + "hooks/" + params.id, {
         method: "POST",
         body: formData,
       })
