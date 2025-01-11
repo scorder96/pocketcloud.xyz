@@ -7,20 +7,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-export function DeployCard() {
-  const [Loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-
-  function onDeploy() {
-    setLoading(true);
-    setTimeout(function () {
-      setLoading(false);
-      navigate("dashboard/new");
-    }, 1000);
-  }
+interface Props {
+  onDeployContinue: () => void;
+}
+export function DeployCard({ onDeployContinue }: Props) {
   return (
     <Card className="w-[350px]">
       <CardHeader>
@@ -28,17 +19,17 @@ export function DeployCard() {
         <CardDescription>Deploy a new instance in one-click.</CardDescription>
       </CardHeader>
       <CardContent>
-        <Button className="w-full" onClick={onDeploy} disabled={Loading}>
-          {Loading ? "Deploying" : "Deploy"}
+        <Button className="w-full" onClick={onDeployContinue}>
+          Deploy
         </Button>
       </CardContent>
-      <CardFooter className="flex justify-center">
-        <span className="text-sm font-light">
-          You can import database configurations later
-        </span>
-        {/* <Button variant="outline">Cancel</Button> */}
-        {/* <Button className="w-full">Deploy</Button> */}
-      </CardFooter>
+      {/* <CardFooter className="flex justify-center"> */}
+      {/* <span className="text-sm font-light"> */}
+      {/* You can import database configurations later */}
+      {/* </span> */}
+      {/* <Button variant="outline">Cancel</Button> */}
+      {/* <Button className="w-full">Deploy</Button> */}
+      {/* </CardFooter> */}
     </Card>
   );
 }

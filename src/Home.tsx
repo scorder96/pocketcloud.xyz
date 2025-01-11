@@ -4,12 +4,14 @@ import frog from "/frog.png";
 import { Button } from "./components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import DeployUserPassCard from "./DeployUserPassCard";
 
 export default function Home() {
   useEffect(() => {
     document.title = "PocketCloud - PocketBase Hosting";
   }, []);
   const [Hovering, setHovering] = useState(false);
+  const [Next, setNext] = useState(false);
 
   return (
     <div className="flex flex-col justify-center items-center h-screen dark:bg-zinc-900">
@@ -31,7 +33,11 @@ export default function Home() {
         onMouseLeave={() => setHovering(false)}
         className="z-10"
       >
-        <DeployCard />
+        {!Next ? (
+          <DeployCard onDeployContinue={() => setNext(true)} />
+        ) : (
+          <DeployUserPassCard />
+        )}
       </div>
       <Link to={"/dashboard"}>
         <Button variant={"link"} className="mt-8">
