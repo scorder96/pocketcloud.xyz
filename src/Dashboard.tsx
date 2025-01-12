@@ -132,8 +132,18 @@ export default function Dashboard() {
       .create(data)
       .catch((err) => console.log(err));
     if (record) {
-      await fetch(import.meta.env.VITE_API_URL + "deploy/" + slug)
+      await fetch(import.meta.env.VITE_API_URL + "deploy/" + slug, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: pb.authStore.model!.email,
+          pass: localStorage.getItem("pc_inst_pass"),
+        }),
+      })
         .then(() => {
+          localStorage.setItem("pc_inst_pass", "");
           navigate("/dashboard/" + slug);
         })
         .catch((err) => console.log(err));
