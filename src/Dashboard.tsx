@@ -143,7 +143,7 @@ export default function Dashboard() {
         }),
       })
         .then(() => {
-          localStorage.setItem("pc_inst_pass", "");
+          localStorage.removeItem("pc_inst_pass");
           navigate("/dashboard/" + slug);
         })
         .catch((err) => console.log(err));
